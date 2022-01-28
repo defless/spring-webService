@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cours.spring.repositories.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -16,6 +18,13 @@ public class UserService {
     }
     public User getUserById(String username) {
         return userRepository.findById(username).orElse(null);
+    }
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public void deleteUser(String username) {
+        userRepository.deleteById(username);
     }
 
 }
