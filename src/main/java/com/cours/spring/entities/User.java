@@ -2,6 +2,8 @@ package com.cours.spring.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -11,6 +13,10 @@ public class User implements Serializable {
     @Column(name = "id")
     private String username;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Address> addresses = new ArrayList<Address>();
+
     @Column(name = "firstname")
     private String firstname;
 
@@ -19,6 +25,15 @@ public class User implements Serializable {
 
     @Column(name = "phone")
     private String phone;
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
 
     public String getUsername() {
         return username;
