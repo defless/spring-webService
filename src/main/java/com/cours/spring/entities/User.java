@@ -1,5 +1,7 @@
 package com.cours.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.List;
 public class User implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     private String username;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -50,6 +52,7 @@ public class User implements Serializable {
     public String getPhone() {
         return phone;
     }
+
 
     @Override
     public String toString() {
